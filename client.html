@@ -2,9 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
+    <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="socket.io-1.4.5.js"></script>
+    <script type="text/javascript">
+        	var socket = io("http://localhost:8080");
+		socket.emit('autenticated',{'web_id': 'eso e slo q hay', 'identificador':'15151515'});
+  	//socket.emit('hola', {'web_id': '123456', 'cell_id': 'Hola mundo'});
+  	socket.on('response-autenticacion',function(data){
+			console.log('llego---> ',data);
+  	});
+
+  	socket.on('estado_servicio',function(data){
+  	    console.log('desde el estado del cliente');
+  		socket.emit('identificarme', {'web_id': 'eso e slo q hay', 'identificador':'15151515'});
+  	});
+    //socket.emit('solicitar-informacion', {'web_id': 'eso e slo q hay', 'identificador':'15151515'});
+    </script>
 </head>
 <body>
-$END$
+
 </body>
 </html>
