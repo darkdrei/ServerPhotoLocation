@@ -7,8 +7,6 @@ var celulares = [];
 
 
 io.on('connection', function(socket) {
-  console.log('Alguien se ha conectado con Sockets');
-  //socket.emit('messages', messages);
 
   socket.on('autenticated', function(data) {
     console.log('  llegada ', socket.id);
@@ -24,18 +22,15 @@ io.on('connection', function(socket) {
   
   
   socket.on('solicitar-informacion', function (data) {
-    console.log('se deben de identificar ---> ',data);
-      console.log('celulares ---> ',celulares);
-      socket.broadcast.emit({'estado_servicio':true});
       for(var i=0; i < celulares.length; i++){
-        io.to(celulares[i].identificador).emit({'estado_servicio':true});
+        io.to(celulares[i].conexion).emit('estado-servicio', {'servicio':true});
       }
-      console.log('no lo eealizo');
   });
 
   socket.on('identificarme', function (data) {
-      console.log(data);
+      io.to(socket.id).emit('respuesta-identificacion', {'respuesta':true})
   });
+
 });
 
 

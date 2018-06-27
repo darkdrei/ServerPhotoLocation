@@ -13,11 +13,15 @@
 			console.log('llego---> ',data);
   	});
 
-  	socket.on('estado_servicio',function(data){
+  	socket.on('estado-servicio',function(data){
   	    console.log('desde el estado del cliente');
   		socket.emit('identificarme', {'web_id': 'eso e slo q hay', 'identificador':'15151515'});
   	});
     //socket.emit('solicitar-informacion', {'web_id': 'eso e slo q hay', 'identificador':'15151515'});
+
+    socket.on('respuesta-identificacion', function(data){
+        console.log('Esto es la resuesta autenticacion--> ',data)
+    });
     </script>
 </head>
 <body>
